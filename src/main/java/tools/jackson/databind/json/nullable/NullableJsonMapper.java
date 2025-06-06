@@ -16,10 +16,12 @@ import tools.jackson.databind.JavaType;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.MappingIterator;
 import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectReader;
 import tools.jackson.databind.SerializationConfig;
 import tools.jackson.databind.cfg.MapperBuilder;
 import tools.jackson.databind.cfg.MapperBuilderState;
 import tools.jackson.databind.node.JsonNodeFactory;
+import tools.jackson.databind.nullable.NullableObjectReader;
 import tools.jackson.databind.type.TypeFactory;
 import tools.jackson.databind.util.TokenBuffer;
 
@@ -600,4 +602,14 @@ public class NullableJsonMapper extends ObjectMapper {
         return super.createParser(src);
     }
 
+    /*
+    /**********************************************************************
+    /* Parser methods
+    /**********************************************************************
+     */
+
+    @Override
+    protected ObjectReader _newReader(DeserializationConfig config) {
+        return new NullableObjectReader(this, config);
+    }
 }

@@ -27,7 +27,7 @@ import java.util.TimeZone;
 
 public class NullableObjectReader extends ObjectReader {
 
-    protected NullableObjectReader(ObjectMapper mapper, DeserializationConfig config) {
+    public NullableObjectReader(ObjectMapper mapper, DeserializationConfig config) {
         super(mapper, config);
     }
 
@@ -430,33 +430,38 @@ public class NullableObjectReader extends ObjectReader {
     }
 
     @Override
-    public ObjectReader with(DatatypeFeature feature) {
-        return super.with(feature);
+    public NullableObjectReader with(DatatypeFeature feature) {
+        return withConfig(_config.with(feature));
     }
 
     @Override
-    public ObjectReader with(DeserializationFeature feature) {
-        return super.with(feature);
+    public NullableObjectReader with(DeserializationFeature feature) {
+        return withConfig(_config.with(feature));
     }
 
     @Override
-    public ObjectReader with(FormatFeature feature) {
-        return super.with(feature);
+    public NullableObjectReader with(FormatFeature feature) {
+        return withConfig(_config.with(feature));
     }
 
     @Override
-    public ObjectReader with(StreamReadFeature feature) {
-        return super.with(feature);
+    public NullableObjectReader with(StreamReadFeature feature) {
+        return withConfig(_config.with(feature));
     }
 
     @Override
-    public ObjectReader with(DeserializationFeature first, DeserializationFeature... other) {
-        return super.with(first, other);
+    public NullableObjectReader with(DeserializationFeature first, DeserializationFeature... other) {
+        return withConfig(_config.with(first, other));
     }
 
     @Override
-    public ObjectReader with(InjectableValues injectableValues) {
-        return super.with(injectableValues);
+    public NullableObjectReader with(InjectableValues injectableValues) {
+        if (_injectableValues == injectableValues) {
+            return this;
+        }
+        return _new(this, _config,
+                _valueType, _rootDeserializer, _valueToUpdate,
+                _schema, injectableValues);
     }
 
     @Override
@@ -485,23 +490,23 @@ public class NullableObjectReader extends ObjectReader {
     }
 
     @Override
-    public ObjectReader withFeatures(DatatypeFeature... features) {
-        return super.withFeatures(features);
+    public NullableObjectReader withFeatures(DatatypeFeature... features) {
+        return withConfig(_config.withFeatures(features));
     }
 
     @Override
-    public ObjectReader withFeatures(DeserializationFeature... features) {
-        return super.withFeatures(features);
+    public NullableObjectReader withFeatures(DeserializationFeature... features) {
+        return withConfig(_config.withFeatures(features));
     }
 
     @Override
-    public ObjectReader withFeatures(FormatFeature... features) {
-        return super.withFeatures(features);
+    public NullableObjectReader withFeatures(FormatFeature... features) {
+        return withConfig(_config.withFeatures(features));
     }
 
     @Override
-    public ObjectReader withFeatures(StreamReadFeature... features) {
-        return super.withFeatures(features);
+    public NullableObjectReader withFeatures(StreamReadFeature... features) {
+        return withConfig(_config.withFeatures(features));
     }
 
     @Override
