@@ -410,23 +410,23 @@ public class NullableObjectReader extends ObjectReader {
     }
 
     @Override
-    public ObjectReader with(ContextAttributes attrs) {
-        return super.with(attrs);
+    public NullableObjectReader with(@Nullable ContextAttributes attrs) {
+        return withConfig(_config.with(attrs));
     }
 
     @Override
-    public ObjectReader with(DeserializationConfig config) {
-        return super.with(config);
+    public NullableObjectReader with(DeserializationConfig config) {
+        return withConfig(config);
     }
 
     @Override
-    public ObjectReader with(Base64Variant defaultBase64) {
-        return super.with(defaultBase64);
+    public NullableObjectReader with(@Nullable Base64Variant defaultBase64) {
+        return withConfig(_config.with(defaultBase64));
     }
 
     @Override
-    public ObjectReader with(JsonNodeFactory f) {
-        return super.with(f);
+    public NullableObjectReader with(@Nullable JsonNodeFactory f) {
+        return withConfig(_config.with(f));
     }
 
     @Override
@@ -455,7 +455,7 @@ public class NullableObjectReader extends ObjectReader {
     }
 
     @Override
-    public NullableObjectReader with(InjectableValues injectableValues) {
+    public NullableObjectReader with(@Nullable InjectableValues injectableValues) {
         if (_injectableValues == injectableValues) {
             return this;
         }
@@ -465,28 +465,33 @@ public class NullableObjectReader extends ObjectReader {
     }
 
     @Override
-    public ObjectReader with(Locale l) {
-        return super.with(l);
+    public NullableObjectReader with(@Nullable Locale l) {
+        return withConfig(_config.with(l));
     }
 
     @Override
-    public ObjectReader with(FormatSchema schema) {
-        return super.with(schema);
+    public NullableObjectReader with(@Nullable FormatSchema schema) {
+        if (_schema == schema) {
+            return this;
+        }
+        _verifySchemaType(schema);
+        return _new(this, _config, _valueType, _rootDeserializer, _valueToUpdate,
+                schema, _injectableValues);
     }
 
     @Override
-    public ObjectReader with(TimeZone tz) {
-        return super.with(tz);
+    public NullableObjectReader with(TimeZone tz) {
+        return withConfig(_config.with(tz));
     }
 
     @Override
-    public ObjectReader withAttribute(Object key, Object value) {
-        return super.withAttribute(key, value);
+    public NullableObjectReader withAttribute(Object key, Object value) {
+        return withConfig( _config.withAttribute(key, value));
     }
 
     @Override
-    public ObjectReader withAttributes(Map<?, ?> attrs) {
-        return super.withAttributes(attrs);
+    public NullableObjectReader withAttributes(@Nullable Map<?, ?> attrs) {
+        return withConfig(_config.withAttributes(attrs));
     }
 
     @Override
@@ -510,28 +515,28 @@ public class NullableObjectReader extends ObjectReader {
     }
 
     @Override
-    public ObjectReader withHandler(DeserializationProblemHandler h) {
-        return super.withHandler(h);
+    public NullableObjectReader withHandler(DeserializationProblemHandler h) {
+        return withConfig(_config.withHandler(h));
     }
 
     @Override
-    public ObjectReader without(DatatypeFeature feature) {
-        return super.without(feature);
+    public NullableObjectReader without(DatatypeFeature feature) {
+        return withConfig(_config.without(feature));
     }
 
     @Override
-    public ObjectReader without(DeserializationFeature feature) {
-        return super.without(feature);
+    public NullableObjectReader without(DeserializationFeature feature) {
+        return withConfig(_config.without(feature));
     }
 
     @Override
-    public ObjectReader without(FormatFeature feature) {
-        return super.without(feature);
+    public NullableObjectReader without(FormatFeature feature) {
+        return withConfig(_config.without(feature));
     }
 
     @Override
-    public ObjectReader without(StreamReadFeature feature) {
-        return super.without(feature);
+    public NullableObjectReader without(StreamReadFeature feature) {
+        return withConfig(_config.without(feature));
     }
 
     @Override
