@@ -1,12 +1,20 @@
 package tools.jackson.databind.json.nullable;
 
+import org.jspecify.annotations.Nullable;
 import tools.jackson.core.JacksonException;
+import tools.jackson.core.JsonEncoding;
+import tools.jackson.core.JsonGenerator;
 import tools.jackson.core.JsonParser;
+import tools.jackson.core.TokenStreamFactory;
+import tools.jackson.core.TreeNode;
 import tools.jackson.core.Version;
+import tools.jackson.core.io.SegmentedStringWriter;
 import tools.jackson.core.json.JsonFactory;
 import tools.jackson.core.json.JsonReadFeature;
 import tools.jackson.core.json.JsonWriteFeature;
 import tools.jackson.core.type.TypeReference;
+import tools.jackson.core.util.BufferRecycler;
+import tools.jackson.core.util.ByteArrayBuilder;
 import tools.jackson.databind.DeserializationConfig;
 import tools.jackson.databind.InjectableValues;
 import tools.jackson.databind.JavaType;
@@ -14,16 +22,21 @@ import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.MappingIterator;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.SerializationConfig;
+import tools.jackson.databind.SerializationFeature;
 import tools.jackson.databind.cfg.MapperBuilder;
 import tools.jackson.databind.cfg.MapperBuilderState;
 import tools.jackson.databind.node.JsonNodeFactory;
+import tools.jackson.databind.ser.SerializationContextExt;
 import tools.jackson.databind.type.TypeFactory;
 import tools.jackson.databind.util.TokenBuffer;
 
 import java.io.DataInput;
+import java.io.DataOutput;
 import java.io.File;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.Reader;
+import java.io.Writer;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.nio.file.Path;
@@ -477,7 +490,60 @@ public class NullableJsonMapper extends ObjectMapper {
         return super.readValues(p, valueType);
     }
 
+    /*
+    /**********************************************************************
+    /* Write methods
+    /**********************************************************************
+     */
 
-    
+    @Override
+    public void writeTree(JsonGenerator g, @Nullable TreeNode rootNode) throws JacksonException {
+        super.writeTree(g, rootNode);
+    }
+
+    @Override
+    public void writeValue(JsonGenerator g, @Nullable Object value) throws JacksonException {
+        super.writeValue(g, value);
+    }
+
+    @Override
+    public void writeValue(File file, @Nullable Object value) throws JacksonException {
+        super.writeValue(file, value);
+    }
+
+    @Override
+    public void writeValue(Path path, @Nullable Object value) throws JacksonException {
+        super.writeValue(path, value);
+    }
+
+    @Override
+    public void writeValue(OutputStream out, @Nullable Object value) throws JacksonException {
+        super.writeValue(out, value);
+    }
+
+    @Override
+    public void writeValue(DataOutput out, @Nullable Object value) throws JacksonException {
+        super.writeValue(out, value);
+    }
+
+    @Override
+    public void writeValue(Writer w, @Nullable Object value) throws JacksonException {
+        super.writeValue(w, value);
+    }
+
+    @Override
+    public String writeValueAsString(@Nullable Object value) throws JacksonException {
+        return super.writeValueAsString(value);
+    }
+
+    @Override
+    public byte[] writeValueAsBytes(@Nullable Object value) throws JacksonException {
+        return super.writeValueAsBytes(value);
+    }
+
+    @Override
+    public TokenBuffer writeValueIntoBuffer(@Nullable Object value) throws JacksonException {
+        return super.writeValueIntoBuffer(value);
+    }
 
 }
