@@ -2,19 +2,14 @@ package tools.jackson.databind.json.nullable;
 
 import org.jspecify.annotations.Nullable;
 import tools.jackson.core.JacksonException;
-import tools.jackson.core.JsonEncoding;
 import tools.jackson.core.JsonGenerator;
 import tools.jackson.core.JsonParser;
-import tools.jackson.core.TokenStreamFactory;
 import tools.jackson.core.TreeNode;
 import tools.jackson.core.Version;
-import tools.jackson.core.io.SegmentedStringWriter;
 import tools.jackson.core.json.JsonFactory;
 import tools.jackson.core.json.JsonReadFeature;
 import tools.jackson.core.json.JsonWriteFeature;
 import tools.jackson.core.type.TypeReference;
-import tools.jackson.core.util.BufferRecycler;
-import tools.jackson.core.util.ByteArrayBuilder;
 import tools.jackson.databind.DeserializationConfig;
 import tools.jackson.databind.InjectableValues;
 import tools.jackson.databind.JavaType;
@@ -22,11 +17,9 @@ import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.MappingIterator;
 import tools.jackson.databind.ObjectMapper;
 import tools.jackson.databind.SerializationConfig;
-import tools.jackson.databind.SerializationFeature;
 import tools.jackson.databind.cfg.MapperBuilder;
 import tools.jackson.databind.cfg.MapperBuilderState;
 import tools.jackson.databind.node.JsonNodeFactory;
-import tools.jackson.databind.ser.SerializationContextExt;
 import tools.jackson.databind.type.TypeFactory;
 import tools.jackson.databind.util.TokenBuffer;
 
@@ -544,6 +537,67 @@ public class NullableJsonMapper extends ObjectMapper {
     @Override
     public TokenBuffer writeValueIntoBuffer(@Nullable Object value) throws JacksonException {
         return super.writeValueIntoBuffer(value);
+    }
+
+    @Override
+    public JsonParser createParser(byte[] content) throws JacksonException {
+        return super.createParser(content);
+    }
+
+    @Override
+    public JsonParser createParser(byte[] content, int offset, int len) throws JacksonException {
+        return super.createParser(content, offset, len);
+    }
+
+    /*
+    /**********************************************************************
+    /* Parser methods
+    /**********************************************************************
+     */
+
+    @Override
+    public JsonParser createParser(char[] content) throws JacksonException {
+        return super.createParser(content);
+    }
+
+    @Override
+    public JsonParser createParser(char[] content, int offset, int len) throws JacksonException {
+        return super.createParser(content, offset, len);
+    }
+
+    @Override
+    public JsonParser createParser(DataInput content) throws JacksonException {
+        return super.createParser(content);
+    }
+
+    @Override
+    public JsonParser createParser(String content) throws JacksonException {
+        return super.createParser(content);
+    }
+
+    @Override
+    public JsonParser createParser(File src) throws JacksonException {
+        return super.createParser(src);
+    }
+
+    @Override
+    public JsonParser createParser(InputStream src) throws JacksonException {
+        return super.createParser(src);
+    }
+
+    @Override
+    public JsonParser createParser(Path src) throws JacksonException {
+        return super.createParser(src);
+    }
+
+    @Override
+    public JsonParser createParser(Reader src) throws JacksonException {
+        return super.createParser(src);
+    }
+
+    @Override
+    public JsonParser createParser(URL src) throws JacksonException {
+        return super.createParser(src);
     }
 
 }
