@@ -613,11 +613,6 @@ public class NullableObjectReader extends ObjectReader {
         return super.withView(activeView);
     }
 
-    @Override
-    public void writeTree(JsonGenerator g, TreeNode tree) {
-        super.writeTree(g, tree);
-    }
-
     /*
     /**********************************************************************
     /* Internal factory methods
